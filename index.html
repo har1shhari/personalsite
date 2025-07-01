@@ -1,390 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Harishkumar Moorthy - Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-  <style>
-    /* Dark theme base */
-    body {
-      background-color: #121212;
-      color: #e0e0e0;
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      line-height: 1.6;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
-    a {
-      color: #4fc3f7;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    a:hover {
-      color: #81d4fa;
-      text-decoration: underline;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Harishkumar Moorthy - Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+<style>
+  /* Base dark theme */
+  body {
+    background-color: #1e1e28;
+    color: #c7c7d1;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  a {
+    color: #90a0b7;
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+  a:hover {
+    color: #a3b1c2;
+    text-decoration: underline;
+  }
 
-    header {
-      background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
-      padding: 3em 1em 2em;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+  header {
+    background: #292a3a;
+    padding: 3em 1em 2em;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  }
+  header img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 8px #6f728a88;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+  }
+  header img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 14px #b0b3c4aa;
+  }
+  header h1 {
+    margin: 0.5em 0 0.2em;
+    font-weight: 800;
+    font-size: 2.6rem;
+    color: #a1a6b3;
+  }
+  header p {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: #8a8f9e;
+  }
+
+  nav {
+    margin-top: 1.2em;
+  }
+  nav a {
+    font-weight: 600;
+    margin: 0 1em;
+    font-size: 1.1rem;
+    padding-bottom: 0.25em;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+  nav a:hover,
+  nav a.active {
+    border-color: #7a84a3;
+    color: #bcc4d0;
+  }
+
+  main {
+    max-width: 900px;
+    margin: 3em auto 5em;
+    padding: 0 1.5em;
+  }
+  section {
+    margin-bottom: 3em;
+    background: #2c2e42;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(50,50,70,0.3);
+    padding: 1.8em 2em;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeSlideIn 0.9s forwards;
+  }
+  section:nth-child(1) { animation-delay: 0.25s; }
+  section:nth-child(2) { animation-delay: 0.5s; }
+  section:nth-child(3) { animation-delay: 0.75s; }
+  section:nth-child(4) { animation-delay: 1s; }
+
+  h2 {
+    color: #9aa2b4;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 0.04em;
+  }
+  p, ul {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #d0d2dc;
+  }
+  ul {
+    padding-left: 1.3em;
+  }
+  ul li {
+    margin-bottom: 0.7em;
+  }
+
+  /* Buttons for experience toggles */
+  .exp-button {
+    display: inline-block;
+    background-color: #5e667c;
+    color: #d6d9e0;
+    padding: 0.55em 1.2em;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 0.5em 0.8em 1em 0;
+    box-shadow: 0 4px 12px rgba(94,102,124,0.4);
+    transition: background-color 0.3s ease, transform 0.15s ease;
+    user-select: none;
+  }
+  .exp-button:hover {
+    background-color: #7c849a;
+    transform: scale(1.03);
+  }
+  .exp-button.active {
+    background-color: #838aa2;
+    color: #1e2028;
+    box-shadow: 0 6px 15px rgba(131,138,162,0.5);
+  }
+
+  /* Experience details panels */
+  .exp-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+    background-color: #23253b;
+    padding: 0 1em;
+    border-radius: 0 0 12px 12px;
+    margin-bottom: 1.5em;
+    box-shadow: inset 0 0 8px #3a3e59;
+  }
+  .exp-details.open {
+    max-height: 480px; /* enough for full content */
+    padding: 1em 1.2em;
+  }
+  .exp-details p {
+    margin: 0.5em 0;
+    color: #babecf;
+  }
+
+  /* Contact buttons */
+  .contact-buttons {
+    display: flex;
+    gap: 1.1em;
+    flex-wrap: wrap;
+  }
+  .contact-btn {
+    flex: 1 1 140px;
+    background: linear-gradient(135deg, #6f728a, #838aa2);
+    color: #e1e3e8;
+    padding: 1em 1.5em;
+    border-radius: 40px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 4px 14px rgba(131,138,162,0.4);
+    transition: background 0.3s ease, transform 0.15s ease;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .contact-btn:hover {
+    background: linear-gradient(135deg, #838aa2, #6f728a);
+    transform: scale(1.04);
+  }
+
+  /* Form styles (optional) */
+  form {
+    margin-top: 1.2em;
+    max-width: 600px;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.4em;
+    font-weight: 600;
+    color: #838aa2;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 0.6em 1em;
+    border-radius: 8px;
+    border: none;
+    background: #3a3f5c;
+    color: #d1d3e0;
+    font-size: 1rem;
+    margin-bottom: 1.2em;
+    resize: vertical;
+    transition: background-color 0.3s ease;
+  }
+  input:focus, textarea:focus {
+    outline: none;
+    background-color: #525a83;
+    box-shadow: 0 0 8px #838aa2;
+  }
+  button[type="submit"] {
+    background-color: #7c849a;
+    color: #1e2028;
+    font-weight: 700;
+    padding: 0.7em 1.6em;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(124,132,154,0.5);
+    transition: background-color 0.3s ease, transform 0.15s ease;
+  }
+  button[type="submit"]:hover {
+    background-color: #5e667c;
+    transform: scale(1.05);
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 2em 1em;
+    background: #26283d;
+    color: #757a8f;
+    font-size: 0.9rem;
+    box-shadow: inset 0 1px 3px rgba(255,255,255,0.05);
+    user-select: none;
+  }
+
+  /* Animations */
+  @keyframes fadeSlideIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    nav a {
+      display: block;
+      margin: 0.5em 0;
+    }
+    .contact-buttons {
+      flex-direction: column;
     }
     header img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 0 15px #4fc3f7;
-      transition: transform 0.5s ease;
-      cursor: pointer;
+      width: 110px;
+      height: 110px;
     }
-    header img:hover {
-      transform: scale(1.1) rotate(5deg);
-      box-shadow: 0 0 25px #81d4fa;
-    }
-    header h1 {
-      margin: 0.5em 0 0.2em;
-      font-weight: 800;
-      font-size: 2.8rem;
-      color: #81d4fa;
-      text-shadow: 0 0 10px #4fc3f7;
-    }
-    header p {
-      margin: 0;
-      font-weight: 600;
-      font-size: 1.2rem;
-      color: #b3b3b3;
-    }
-
-    nav {
-      margin-top: 1.2em;
-    }
-    nav a {
-      font-weight: 600;
-      margin: 0 1em;
-      font-size: 1.1rem;
-      padding-bottom: 0.25em;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.3s ease;
-    }
-    nav a:hover,
-    nav a.active {
-      border-color: #4fc3f7;
-    }
-
     main {
-      max-width: 900px;
-      margin: 3em auto 5em;
-      padding: 0 1.5em;
-    }
-    section {
-      margin-bottom: 3em;
-      background: #1f2937;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(79,195,247,0.2);
-      padding: 1.8em 2em;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeSlideIn 1s forwards;
-    }
-    section:nth-child(1) { animation-delay: 0.3s; }
-    section:nth-child(2) { animation-delay: 0.6s; }
-    section:nth-child(3) { animation-delay: 0.9s; }
-    section:nth-child(4) { animation-delay: 1.2s; }
-
-    h2 {
-      color: #4fc3f7;
-      margin-top: 0;
-      margin-bottom: 1rem;
-      font-weight: 700;
-      font-size: 2rem;
-      letter-spacing: 0.05em;
-      text-shadow: 0 0 6px #81d4fa;
-    }
-    p, ul {
-      font-size: 1.1rem;
-      line-height: 1.5;
-      color: #d0d0d0;
-    }
-    ul {
-      padding-left: 1.3em;
-    }
-    ul li {
-      margin-bottom: 0.8em;
-    }
-
-    /* Buttons for experience toggles */
-    .exp-button {
-      display: inline-block;
-      background-color: #4fc3f7;
-      color: #121212;
-      padding: 0.5em 1.2em;
-      border: none;
-      border-radius: 30px;
-      font-weight: 700;
-      cursor: pointer;
-      margin: 0.5em 0.8em 1em 0;
-      box-shadow: 0 6px 12px rgba(79,195,247,0.4);
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      user-select: none;
-    }
-    .exp-button:hover {
-      background-color: #81d4fa;
-      transform: scale(1.05);
-    }
-    .exp-button.active {
-      background-color: #0288d1;
-      color: white;
-      box-shadow: 0 8px 20px rgba(2,136,209,0.6);
-    }
-
-    /* Experience details panels */
-    .exp-details {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.6s ease, padding 0.6s ease;
-      background-color: #162938;
       padding: 0 1em;
-      border-radius: 0 0 12px 12px;
-      margin-bottom: 1.5em;
-      box-shadow: inset 0 0 12px #1e406b;
     }
-    .exp-details.open {
-      max-height: 500px; /* enough to show full content */
-      padding: 1em;
-    }
-    .exp-details p {
-      margin: 0.5em 0;
-      color: #cbd5e1;
-    }
-
-    /* Contact buttons */
-    .contact-buttons {
-      display: flex;
-      gap: 1.2em;
-      flex-wrap: wrap;
-    }
-    .contact-btn {
-      flex: 1 1 140px;
-      background: linear-gradient(135deg, #0288d1, #81d4fa);
-      color: #121212;
-      padding: 1em 1.5em;
-      border-radius: 40px;
-      font-weight: 700;
-      text-align: center;
-      cursor: pointer;
-      user-select: none;
-      box-shadow: 0 6px 15px rgba(79,195,247,0.5);
-      transition: background 0.4s ease, transform 0.2s ease;
-      border: none;
-      text-decoration: none;
-      display: inline-block;
-    }
-    .contact-btn:hover {
-      background: linear-gradient(135deg, #81d4fa, #0288d1);
-      transform: scale(1.05);
-    }
-
-    /* Form styles */
-    form {
-      margin-top: 1.2em;
-      max-width: 600px;
-    }
-    label {
-      display: block;
-      margin-bottom: 0.4em;
-      font-weight: 600;
-      color: #81d4fa;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 0.6em 1em;
-      border-radius: 8px;
-      border: none;
-      background: #2c3e50;
-      color: #e0e0e0;
-      font-size: 1rem;
-      margin-bottom: 1.2em;
-      resize: vertical;
-      transition: background-color 0.3s ease;
-    }
-    input:focus, textarea:focus {
-      outline: none;
-      background-color: #3b536e;
-      box-shadow: 0 0 10px #4fc3f7;
-    }
-    button[type="submit"] {
-      background-color: #4fc3f7;
-      color: #121212;
-      font-weight: 700;
-      padding: 0.7em 1.6em;
-      border: none;
-      border-radius: 40px;
-      cursor: pointer;
-      box-shadow: 0 6px 15px rgba(79,195,247,0.5);
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    button[type="submit"]:hover {
-      background-color: #0288d1;
-      transform: scale(1.05);
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 2em 1em;
-      background: #1a2638;
-      color: #607d8b;
-      font-size: 0.9rem;
-      box-shadow: inset 0 1px 3px rgba(255,255,255,0.05);
-      user-select: none;
-    }
-
-    /* Animations */
-    @keyframes fadeSlideIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      nav a {
-        display: block;
-        margin: 0.5em 0;
-      }
-      .contact-buttons {
-        flex-direction: column;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <header>
-    <img src="assets/Harish.jpg" alt="Harishkumar Moorthy" />
-    <h1>Harishkumar Moorthy</h1>
-    <p>Salesforce Consultant | Data Analyst | CRM Expert</p>
-    <nav>
-      <a href="#about" class="active">About</a> |
-      <a href="#experience">Experience</a> |
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<header>
+  <img src="assets/Harish.jpg" alt="Harishkumar Moorthy" />
+  <h1>Harishkumar Moorthy</h1>
+  <p>Salesforce Consultant | Data Analyst | CRM Expert</p>
+  <nav>
+    <a href="#about" class="active">About</a> |
+    <a href="#experience">Experience</a> |
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-  <main>
-    <section id="about">
-      <h2>About Me</h2>
-      <p>Certified Salesforce Consultant with 4 years of experience in Sales Cloud, Service Cloud, and CRM Analytics. Adept at building insightful dashboards and automating business processes across Salesforce, Tableau, Power BI, and more.</p>
-      <p><strong>Skills:</strong> Salesforce | Apex | Tableau | CRM Analytics | Power BI | Python | SQL | Git | JIRA</p>
-      <p><strong>Education:</strong> MBA, HFU Germany (2023–2025) | B.E., Kamaraj Engineering College, India (2016–2020)</p>
-    </section>
+<main>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Certified Salesforce Consultant with 4 years of experience in Sales Cloud, Service Cloud, and CRM Analytics. Adept at building insightful dashboards and automating business processes across Salesforce, Tableau, Power BI, and more.</p>
+    <p><strong>Skills:</strong> Salesforce | Apex | Tableau | CRM Analytics | Power BI | Python | SQL | Git | JIRA</p>
+    <p><strong>Education:</strong> MBA, HFU Germany (2023–2025) | B.E., Kamaraj Engineering College, India (2016–2020)</p>
+  </section>
 
-    <section id="experience">
-      <h2>Experience</h2>
-      <div>
-        <button class="exp-button" data-target="exp1">Carl Zeiss Vision (2024–Present)</button>
-        <button class="exp-button" data-target="exp2">Capgemini (2022–2023)</button>
-        <button class="exp-button" data-target="exp3">TCS (2020–2022)</button>
-      </div>
+  <section id="experience">
+    <h2>Experience</h2>
+    <div>
+      <button class="exp-button" data-target="exp1">Carl Zeiss Vision (2024–Present)</button>
+      <button class="exp-button" data-target="exp2">Capgemini (2022–2023)</button>
+      <button class="exp-button" data-target="exp3">TCS (2020–2022)</button>
+    </div>
 
-      <div id="exp1" class="exp-details">
-        <p><strong>Master Thesis & Working Student – Salesforce Automation & BI</strong> at Carl Zeiss Vision International GmbH, Aalen, Germany</p>
-        <ul>
-          <li>Designed Power BI dashboards integrating Salesforce and SharePoint</li>
-          <li>Automated tests using Apex and Copado Robot Testing (CRT)</li>
-          <li>Customized Service Cloud Flows and supported case resolution</li>
-          <li>Integrated JSON-based data into BI tools, Managed UAT and sprint documentation</li>
-        </ul>
-      </div>
+    <div id="exp1" class="exp-details">
+      <p><strong>Master Thesis & Working Student – Salesforce Automation & BI</strong> at Carl Zeiss Vision International GmbH, Aalen, Germany</p>
+      <ul>
+        <li>Designed Power BI dashboards integrating Salesforce and SharePoint</li>
+        <li>Automated tests using Apex and Copado Robot Testing (CRT)</li>
+        <li>Customized Service Cloud Flows and supported case resolution</li>
+        <li>Integrated JSON-based data into BI tools, Managed UAT and sprint documentation</li>
+      </ul>
+    </div>
 
-      <div id="exp2" class="exp-details">
-        <p><strong>Salesforce Consultant</strong> at Capgemini, Chennai, India</p>
-        <ul>
-          <li>Delivered dashboards using Tableau, Einstein Discovery, and Marketing Cloud</li>
-          <li>Built campaign automation with Marketing Cloud (Journey Builder, Automation Studio)</li>
-          <li>Developed Visualforce pages and Apex logic</li>
-          <li>Managed CI/CD with Copado and stakeholder communication</li>
-        </ul>
-      </div>
+    <div id="exp2" class="exp-details">
+      <p><strong>Salesforce Consultant</strong> at Capgemini, Chennai, India</p>
+      <ul>
+        <li>Delivered dashboards using Tableau, Einstein Discovery, and Marketing Cloud</li>
+        <li>Built campaign automation with Marketing Cloud (Journey Builder, Automation Studio)</li>
+        <li>Developed Visualforce pages and Apex logic</li>
+        <li>Managed CI/CD with Copado and stakeholder communication</li>
+      </ul>
+    </div>
 
-      <div id="exp3" class="exp-details">
-        <p><strong>System Engineer – Salesforce CRM Analytics</strong> at Tata Consultancy Services, Chennai, India</p>
-        <ul>
-          <li>Implemented CRM solutions in Sales Cloud and CRM Analytics</li>
-          <li>Integrated Google Analytics with Marketing Cloud</li>
-          <li>Developed Apex automation and reduced reporting time by 40%</li>
-          <li>Owned Jira ticket management and cross-team coordination</li>
-        </ul>
-      </div>
-    </section>
+    <div id="exp3" class="exp-details">
+      <p><strong>System Engineer – Salesforce CRM Analytics</strong> at Tata Consultancy Services, Chennai, India</p>
+      <ul>
+        <li>Implemented CRM solutions in Sales Cloud and CRM Analytics</li>
+        <li>Integrated Google Analytics with Marketing Cloud</li>
+        <li>Developed Apex automation and reduced reporting time by 40%</li>
+        <li>Owned Jira ticket management and cross-team coordination</li>
+      </ul>
+    </div>
+  </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="contact-buttons">
-        <a href="mailto:harishhari19599@gmail.com" class="contact-btn" aria-label="Send Email">📧 Email</a>
-        <a href="tel:+4915212618842" class="contact-btn" aria-label="Call Phone">📞 Phone</a>
-        <a href="https://www.linkedin.com/in/harishkumar-moorthy" target="_blank" rel="noopener" class="contact-btn" aria-label="LinkedIn Profile">🔗 LinkedIn</a>
-      </div>
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-buttons">
+      <a href="mailto:harishhari19599@gmail.com" class="contact-btn" aria-label="Send Email">📧 Email</a>
+      <a href="tel:+4915212618842" class="contact-btn" aria-label="Call Phone">📞 Phone</a>
+      <a href="https://www.linkedin.com/in/harishkumar-moorthy" target="_blank" rel="noopener" class="contact-btn" aria-label="LinkedIn Profile">🔗 LinkedIn</a>
+    </div>
+  </section>
+</main>
 
-      <!-- Optional Contact Form -->
-      <!--
-      <form>
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Your Name" required />
+<footer>
+  &copy; 2025 Harishkumar Moorthy. All rights reserved.
+</footer>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Your Email" required />
+<script>
+  // Smooth active nav links
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', e => {
+      document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+      e.target.classList.add('active');
+    });
+  });
 
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+  // Experience toggle logic
+  const buttons = document.querySelectorAll('.exp-button');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const details = document.getElementById(targetId);
 
-        <button type="submit">Send</button>
-      </form>
-      -->
-    </section>
-  </main>
+      // Toggle active class on buttons
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
-  <footer>
-    &copy; 2025 Harishkumar Moorthy. All rights reserved.
-  </footer>
-
-  <script>
-    // Smooth active nav links
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', e => {
-        document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
-        e.target.classList.add('active');
+      // Close all details except the clicked one
+      document.querySelectorAll('.exp-details').forEach(div => {
+        if(div.id === targetId){
+          div.classList.toggle('open');
+        } else {
+          div.classList.remove('open');
+        }
       });
     });
-
-    // Experience toggle logic
-    const buttons = document.querySelectorAll('.exp-button');
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetId = btn.getAttribute('data-target');
-        const details = document.getElementById(targetId);
-
-        // Toggle active class on buttons
-        buttons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        // Close all details except the clicked one
-        document.querySelectorAll('.exp-details').forEach(div => {
-          if(div.id === targetId){
-            div.classList.toggle('open');
-          } else {
-            div.classList.remove('open');
-          }
-        });
-      });
-    });
-  </script>
+  });
+</script>
 </body>
 </html>
